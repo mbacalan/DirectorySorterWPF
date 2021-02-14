@@ -1,0 +1,71 @@
+﻿<Page x:Class="IOHelper.Resorter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IOHelper.Model"
+        mc:Ignorable="d"
+        Title="Directory Re-Sorter"
+        d:DesignHeight="450" d:DesignWidth="600">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            TextWrapping="Wrap">
+            Welcome to Directory Re-Sorter!
+            Select a directory below to get started.
+            Double-click items in left to sort them to right.
+        </TextBlock>
+
+        <ListBox
+            Grid.Row="1"
+            Grid.Column="0"
+            Name="OriginalFolders"
+            Margin="0,0,5,10"
+            ItemsSource="{Binding OriginalFolders}">
+            <ListBox.DataContext>
+                <local:ResorterModel />
+            </ListBox.DataContext>
+        </ListBox>
+
+        <ListBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Name="ResortedFolders"
+            Margin="5,0,0,10"
+            ItemsSource="{Binding SortedFolders}">
+            <ListBox.DataContext>
+                <local:ResorterModel />
+            </ListBox.DataContext>
+        </ListBox>
+
+        <Button
+            x:Name="DirectoryButton"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Click="DirectoryButton_Click" Margin="0,0,0,10">
+            Chose Directory
+        </Button>
+
+        <Button
+            x:Name="ConfirmButton"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Click="ConfirmButton_Click"
+            IsEnabled="False">
+            Confirm Re-Sort
+        </Button>
+    </Grid>
+</Page>

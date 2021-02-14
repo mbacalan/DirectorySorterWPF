@@ -1,0 +1,92 @@
+﻿<Page x:Class="IOHelper.Suffixer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IOHelper.Model"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="Suffixer">
+
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Padding="0,10,0,10"
+            TextWrapping="Wrap">
+            Welcome to Suffixer!
+            Select a directory below to get started.
+            Enter your suffix below.
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0,0,5,10"
+            Padding="0,10,0,10"
+            Name="ChosenPathTextBlock">
+            Pick files
+        </TextBlock>
+
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5,0,0,10"
+            Padding="0,10,0,10"
+            Name="SuffixTextBox"
+            TextChanged="SuffixTextBox_TextChanged"
+            IsEnabled="False" />
+
+        <ListBox
+            Grid.Row="2"
+            Grid.Column="0"
+            Name="OriginalFilesList"
+            Margin="0,0,5,10"
+            ItemsSource="{Binding OriginalFiles}">
+            <ListBox.DataContext>
+                <local:SuffixerModel />
+            </ListBox.DataContext>
+        </ListBox>
+
+        <ListBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Name="PrefixedFilesList"
+            Margin="5,0,0,10"
+            ItemsSource="{Binding SuffixedFiles}">
+            <ListBox.DataContext>
+                <local:SuffixerModel />
+            </ListBox.DataContext>
+        </ListBox>
+
+        <Button
+            x:Name="PickDirectoryButton"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Click="PickDirectoryButton_Click" Margin="0,0,0,10">
+            Pick Files
+        </Button>
+
+        <Button
+            Name="ConfirmButton"
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            Click="ConfirmButton_Click"
+            IsEnabled="False">
+            Confirm Suffixing
+        </Button>
+    </Grid>
+</Page>
